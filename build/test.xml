@@ -39,19 +39,19 @@
              value="${user.name}"/>
              
    <property name="sqltool.jar"
-             value="${basedir}/lib/sqltool.jar" />
+             value="/libtools/sqltool.jar" />
              
    <property name="hsqldb.jar"
-             value="${basedir}/lib/hsqldb.jar" />          
+             value="/libtools/hsqldb.jar" />
              
    <property name="junit.jar"
-             value="${basedir}/lib/junit.jar" />
+             value="/libtools/junit.jar" />
 			 
    <property name="preprocessor.jar"
-             value="${basedir}/lib/preprocessor.jar" />			 
+             value="/libtools/preprocessor.jar" />
              
    <property name="test.suite.jar"
-             value="${basedir}/lib/testsuite.jar" /> 
+             value="/libtools/testsuite.jar" />
              
    <property name="test.src.dir"
              value="${basedir}/test-src" />

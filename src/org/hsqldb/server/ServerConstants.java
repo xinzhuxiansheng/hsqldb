@@ -54,9 +54,9 @@ public interface ServerConstants {
     String SC_DEFAULT_DATABASE = "test";
 
     // default port for each protocol
-    int SC_DEFAULT_HSQL_SERVER_PORT  = 9001;
+    int SC_DEFAULT_HSQL_SERVER_PORT  = 9701;
     int SC_DEFAULT_HSQLS_SERVER_PORT = 554;
-    int SC_DEFAULT_HTTP_SERVER_PORT  = 80;
+    int SC_DEFAULT_HTTP_SERVER_PORT  = 9780;
     int SC_DEFAULT_HTTPS_SERVER_PORT = 443;
     int SC_DEFAULT_BER_SERVER_PORT   = 9101;
 

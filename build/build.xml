@@ -58,9 +58,9 @@
          build.properties file. -->
     <property name="build.debug" value="false"/>
 
-    <property name="servletapi.lib" value="lib/servlet-2_3-fcs-classfiles.zip"/>
-    <property name="junit38.lib" value="lib/junit.jar"/>
-    <property name='jflex.lib' value='lib/JFlex.jar'/>
+    <property name="servletapi.lib" value="../libtools/servlet-2_3-fcs-classfiles.zip"/>
+    <property name="junit38.lib" value="../libtools/junit.jar"/>
+    <property name='jflex.lib' value='../libtools/JFlex.jar'/>
 
     <target name="init"/>
 
@@ -166,7 +166,7 @@ examples:
    <target name="clean-all" depends="-clean, -clean-switch-branch, clean-docs"
            description="Same as clean but delete the jar and doc files as well">
      <delete>
-       <fileset dir="lib" includes="sqltool*.jar, hsql*.jar, testsuite.jar"/>
+       <fileset dir="../libtools" includes="sqltool*.jar, hsql*.jar, testsuite.jar"/>
      </delete>
    </target>
 
@@ -428,7 +428,7 @@ examples:
          >
          <classpath>
            <pathelement location="${junit38.lib}"/>
-           <pathelement location="lib/dbunit.jar"/>
+           <pathelement location="../libtools/dbunit.jar"/>
          </classpath>
          <include name="org/hsqldb/test/**"/>
          <exclude name="org/hsqldb/test/SqlFileScannerDriver.java"/>
@@ -439,13 +439,13 @@ examples:
     <!--jar with (jdkversion-switched) sources, useful for reading/debugging the code from other projects, can be specified via maven too-->
     <target name="hsqldbsources" description="builds jar file containing source code"
             depends="switches">
-        <jar jarfile="lib/hsqldb-sources.jar" basedir="tmp/switchedsrc">
+        <jar jarfile="../libtools/hsqldb-sources.jar" basedir="tmp/switchedsrc">
         </jar>
     </target>
 
     <target name="hsqldbtest" depends="test, -prep-license-files"
             description="Build the hsqldbtest.jar (default plus test classes)">
-      <jar jarfile="lib/hsqldbtest.jar" basedir="classes">
+      <jar jarfile="../libtools/hsqldbtest.jar" basedir="classes">
         <metainf dir="doc" includes="*_lic.txt"/>
         <service type="java.sql.Driver" provider="org.hsqldb.jdbc.JDBCDriver"/>
         <manifest>
@@ -555,7 +555,7 @@ examples:
 
     <target name="hsqldbmin" depends="classes, -prep-license-files"
             description="Build the hsqldbmin.jar (no servers)">
-      <jar jarfile="lib/hsqldbmin.jar">
+      <jar jarfile="../libtools/hsqldbmin.jar">
         <metainf dir="doc" includes="*_lic.txt"/>
         <service type="java.sql.Driver" provider="org.hsqldb.jdbc.JDBCDriver"/>
         <manifest>
@@ -573,7 +573,7 @@ examples:
 
     <target name="hsqldbmain" depends="classes, -prep-license-files"
             description="Build the hsqldbmain.jar (no utilities)">
-      <jar jarfile="lib/hsqldbmain.jar" duplicate='preserve'>
+      <jar jarfile="../libtools/hsqldbmain.jar" duplicate='preserve'>
         <metainf dir="doc" includes="*_lic.txt"/>
         <service type="java.sql.Driver" provider="org.hsqldb.jdbc.JDBCDriver"/>
         <manifest>
@@ -592,7 +592,7 @@ examples:
 
     <target name="hsqldb" depends="classes, -util, -prep-license-files"
             description="Build the default hsqldb.jar">
-      <jar jarfile="lib/hsqldb.jar" duplicate='preserve'>
+      <jar jarfile="../libtools/hsqldb.jar" duplicate='preserve'>
         <metainf dir="doc" includes="*_lic.txt"/>
         <service type="java.sql.Driver" provider="org.hsqldb.jdbc.JDBCDriver"/>
         <manifest>
@@ -617,7 +617,7 @@ examples:
     <target name="hsqldbmodule" depends="classes, -util, -module_info, -prep-license-files"
             description="Build the java module hsqldb.jar">
       <fail message="Java 9 or later required" unless="ant.java.iscjava19"/>
-      <jar jarfile="lib/hsqldbmod.jar" duplicate='preserve'>
+      <jar jarfile="../libtools/hsqldbmod.jar" duplicate='preserve'>
         <metainf dir="doc" includes="*_lic.txt"/>
         <service type="java.sql.Driver" provider="org.hsqldb.jdbc.JDBCDriver"/>
         <manifest>
@@ -642,7 +642,7 @@ examples:
 
     <target name="dbmanswing" depends="-swing, -lib, -prep-license-files"
             description="Build the dbmanagerswing.jar">
-      <jar jarfile="lib/dbmanagerswing.jar" compress="true" filesonly="true">
+      <jar jarfile="../libtools/dbmanagerswing.jar" compress="true" filesonly="true">
         <metainf dir="doc" includes="*_lic.txt"/>
         <manifest>
           <attribute name='Specification-Title' value='${hsqldb.title}'/>
@@ -660,7 +660,7 @@ examples:
 
     <target name="sqltool" depends="-lib, -cmdline, -prep-license-files"
             description="Build 'sqltool.jar' file">
-      <jar jarfile="lib/sqltool.jar" filesonly="true">
+      <jar jarfile="../libtools/sqltool.jar" filesonly="true">
         <metainf dir="doc" includes="*hsqldb_lic.txt"/>
         <manifest>
           <attribute name='Specification-Title' value='${hsqldb.title}'/>
@@ -682,7 +682,7 @@ examples:
 
     <target name="preprocessor" depends="-prepare,-prep-license-files,-preprocessor"
             description="Build 'preprocessor.jar' file">
-      <jar jarfile="lib/preprocessor.jar" compress="true" filesonly="true">
+      <jar jarfile="../libtools/preprocessor.jar" compress="true" filesonly="true">
         <metainf dir="doc" includes="*_lic.txt"/>
         <manifest>
           <attribute name='Specification-Title' value='${hsqldb.title}'/>
@@ -698,7 +698,7 @@ examples:
 
     <target name="hsqldbutil" depends="-util, -prep-license-files"
             description="Build the utility hsqldbutil.jar">
-      <jar jarfile="lib/hsqldbutil.jar" compress="true">
+      <jar jarfile="../libtools/hsqldbutil.jar" compress="true">
         <metainf dir="doc" includes="*_lic.txt"/>
         <manifest>
           <attribute name='Specification-Title' value='${hsqldb.title}'/>
@@ -1083,7 +1083,7 @@ optimizations) manually.
       <!-- Purposefully not using the bndwrap task available for this purpose,
            because the docs don't explain how to use the attributes clearly enough
            to figure out how to use it. -->
-      <java failonerror="true" fork="true" dir="lib" classpath="${bndjar.file}"
+      <java failonerror="true" fork="true" dir="../libtools" classpath="${bndjar.file}"
             classname="aQute.bnd.main.bnd">
         <sysproperty key="hsqldb.version" value="${hsqldb.version}"/>
         <sysproperty key="build.vendor" value="${user.name}"/>

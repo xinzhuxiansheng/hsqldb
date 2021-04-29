@@ -135,7 +135,7 @@ and re-export.</fail>
 
     <!-- This is a wasteful work-around to get Ant to zip the file with a
          different name than "hsqldb-osgi.jar" -->
-    <copy file="lib/hsqldb-osgi.jar" tofile="tmp/hsqldb.jar"/>
+    <copy file="../libtools/hsqldb-osgi.jar" tofile="tmp/hsqldb.jar"/>
     <mkdir dir="data"/>
     <zip destfile="dist/${app.basedir}.zip">
       <zipfileset prefix="${app.basedir}/hsqldb" dir="."
@@ -156,7 +156,7 @@ and re-export.</fail>
                   build/gradlew, *gradled*, build/gradle-app.setting"/>
       <zipfileset prefix="${app.basedir}/hsqldb/doc-src" dir="doc-src"
                   includes="changelist_2_0.txt,hsqldb_lic.txt,hypersonic_lic.txt"/>
-      <zipfileset prefix="${app.basedir}/hsqldb/lib" dir="lib"
+      <zipfileset prefix="${app.basedir}/hsqldb/lib" dir="../libtools"
                   includes="sqltool.jar, servlet*.zip"/>
       <zipfileset prefix="${app.basedir}/hsqldb/lib" dir="tmp"
                   includes="hsqldb.jar"/>

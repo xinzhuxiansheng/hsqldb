@@ -24,7 +24,7 @@
   <property name="javac.targetVersion" value="1.6"/>
   <property name="javac.sourceVersion" value="${javac.targetVersion}"/>
   <property name="target.class" value="org.hsqldb.sample.SpringExtAuth"/>
-  <property name="hsqldb.jarfile" value="${basedir}/../../lib/hsqldb.jar"/>
+  <property name="hsqldb.jarfile" value="/libtools/hsqldb.jar"/>
 
   <import file="ivy-projsetup.xml" />
 
